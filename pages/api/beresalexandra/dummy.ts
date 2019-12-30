@@ -3,7 +3,7 @@ import {NextApiRequest, NextApiResponse} from 'next'
 import mem from 'mem'
 
 import {maxMage} from './utils'
-import {dummyFoodDataForAWeek} from '../scraping/beresalexandra'
+import {dummyFoodDataForAWeek} from '../../scraping/beresalexandra'
 
 const beresalexandraCurrentMenu = mem(dummyFoodDataForAWeek, {maxAge: maxMage})
 

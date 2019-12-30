@@ -1,4 +1,4 @@
-import {FoodType} from './conversion'
+import {FoodType} from './food-type'
 export interface FoodData {
   name: string;
   kcal: number;

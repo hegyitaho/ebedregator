@@ -1,4 +1,5 @@
 import {FoodData} from './food-data'
+import {FoodType} from './food-type'
 
 export function startOfWeek($: CheerioStatic): Date  {
   const startOfTheWeekSelector = '#menutable_print > thead:nth-child(1) > tr:nth-child(2) > td:nth-child(2)'
@@ -32,7 +33,4 @@ export function convertToFoodData(foodDescription: string, type: FoodType, date:
   }
 }
 
-export enum FoodType {
-  Fozelek = 'FOZELEK',
-  MainCourse = 'MAIN_COURSE'
-}
+

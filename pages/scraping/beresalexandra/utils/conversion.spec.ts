@@ -1,6 +1,7 @@
 import {
-  startOfWeek, convertToFoodData, FoodType, getTextForFoodTypeForWeek,
+  startOfWeek, convertToFoodData, getTextForFoodTypeForWeek,
 } from './conversion'
+import {FoodType} from './food-type'
 import {fozelekSelectorsForTheWeek} from '../food-types/fozelek'
 import {loadBeresAlexandraTestDouble} from './test-utils'
 
