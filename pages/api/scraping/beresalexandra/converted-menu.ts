@@ -3,7 +3,7 @@ import cheerio from 'cheerio'
 import fetch from 'node-fetch'
 
 import {FoodType, startOfWeek, getTextForFoodTypeForWeek, convertToFoodData} from './utils/conversion'
-import {FoodData} from './utils/FoodData'
+import {FoodData} from './utils/food-data'
 import {fozelekSelectorsForTheWeek} from './food-types/fozelek'
 import {mainCourseSelectorsForTheWeek} from './food-types/main-course'
 

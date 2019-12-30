@@ -1,4 +1,4 @@
-import {FoodData} from './FoodData'
+import {FoodData} from './food-data'
 
 export function startOfWeek($: CheerioStatic): Date  {
   const startOfTheWeekSelector = '#menutable_print > thead:nth-child(1) > tr:nth-child(2) > td:nth-child(2)'

@@ -1,8 +1,8 @@
 import {
   startOfWeek, convertToFoodData, FoodType, getTextForFoodTypeForWeek,
 } from './conversion'
-import {fozelekSelectorsForTheWeek} from 'src/scraping/beresalexandra/food-types/fozelek'
-import {loadBeresAlexandraTestDouble} from 'src/scraping/beresalexandra/utils/test-utils'
+import {fozelekSelectorsForTheWeek} from '../food-types/fozelek'
+import {loadBeresAlexandraTestDouble} from './test-utils'
 
 describe('conversion utils', () => {
   let $: CheerioStatic
