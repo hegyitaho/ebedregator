@@ -12,8 +12,14 @@ export function loadSite(body: string | Buffer): CheerioStatic {
   return cheerio.load(body)
 }
 
-export function getSiteMenu({next = false} = {}) {
-  return rawSiteContent(next)
+export function siteMenu() {
+  return rawSiteContent('aktualis_etlap')
+    .then(loadSite)
+    .then(menu)
+}
+
+export function nextSiteMenu() {
+  return rawSiteContent('kovetkezo_etlap')
     .then(loadSite)
     .then(menu)
 }
@@ -39,9 +45,8 @@ export function mainCourse($: CheerioStatic): FoodData[] {
   return processRawTextOfFoodTypeForTheWeek($, mainCourseSelectorsForTheWeek(), FoodType.MainCourse)
 }
 
-function rawSiteContent(next: boolean) {
-  const menuURL = next ? 'kovetkezo_etlap' : 'aktualis_etlap'
-  return fetch(`https://www.beresalexandra.hu/${menuURL}/nyomtatas`)
+function rawSiteContent(currentOrNextPath) {
+  return fetch(`https://www.beresalexandra.hu/${currentOrNextPath}/nyomtatas`)
     .then(res => res.text())
 }
 
