@@ -1,7 +1,7 @@
 /* eslint-disable jest/expect-expect */
 import Joi from '@hapi/joi'
 
-import {FoodType} from '../pages/scraping/beresalexandra/utils/food-type'
+import {FoodType} from '../backend/beresalexandra/utils/food-type'
 import current from '../pages/api/beresalexandra/current'
 import next from '../pages/api/beresalexandra/next'
 import dummy from '../pages/api/beresalexandra/dummy'

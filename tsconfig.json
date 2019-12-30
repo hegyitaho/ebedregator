@@ -24,9 +24,9 @@
     "jsx": "preserve"
   },
   "include": [
-    "pages"
+    "pages", "scraping"
   ],
   "exclude": [
-    "node_modules"
+    "node_modules", ".next"
   ]
 }

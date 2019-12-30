@@ -2,12 +2,6 @@
 const {jsWithTs: tsjPreset} = require('ts-jest/presets')
 module.exports = {
   preset: 'ts-jest',
-  roots: [
-    '<rootDir>/pages/',
-    '<rootDir>/components/',
-    '<rootDir>/test/',
-    '<rootDir>/test-resources/',
-  ],
   'transform': {
     ...tsjPreset.transform,
   },
@@ -16,6 +10,7 @@ module.exports = {
   ],
   testPathIgnorePatterns: [
     '/node_modules/',
+    '/.next/',
     '/dist/',
   ],
   globals: {
