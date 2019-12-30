@@ -2,10 +2,10 @@
 import {NextApiRequest, NextApiResponse} from 'next'
 import mem from 'mem'
 
-import {maxMage} from './utils'
+import {oneDayInMilis} from './utils'
 import {dummyFoodDataForAWeek} from '../../../backend/beresalexandra'
 
-const beresalexandraDummyMenu = mem(dummyFoodDataForAWeek, {maxAge: maxMage})
+const beresalexandraDummyMenu = mem(dummyFoodDataForAWeek, {maxAge: oneDayInMilis})
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   res.status(200).json(await beresalexandraDummyMenu())
