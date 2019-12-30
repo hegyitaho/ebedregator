@@ -1,38 +1,33 @@
 /* eslint-disable jest/expect-expect */
-import request from 'supertest'
 import Joi from '@hapi/joi'
-import {FoodType} from '../src/scraping/beresalexandra/utils/conversion'
-import {app} from '../src/express/server'
-import {Server} from 'http'
+import {NextApiRequest, NextApiResponse} from 'next'
 
-describe('AppController (e2e)', () => {  
-  let server: Server
-  beforeEach(async () => {
-    server = app.listen()
-  })
-  afterEach(() => {
-    server.close()
-  })
+import {FoodType} from '../pages/api/scraping/beresalexandra/utils/conversion'
+import current from '../pages/api/beresalexandra/current'
+import next from '../pages/api/beresalexandra/next'
+import dummy from '../pages/api/beresalexandra/dummy'
 
+describe('AppController (e2e)', () => {
+  let req
+  let res
+
+  beforeEach(() => {
+    req = jest.fn()
+    res = {status: jest.fn(() => res), json: jest.fn()}
+  })
   it('beresalexandra returns food data for current week', async () => {
-    const {body} = await request(server)
-      .get('/.netlify/functions/server/beresalexandra/current')
-      .expect(200)
-    return await responseSchema.validateAsync(body)
+    await current(req, res)
+    await responseSchema.validateAsync(res.json.mock.calls[0][0])
   })
 
   it('beresalexandra returns food data for next week', async () => {
-    const {body} = await request(server)
-      .get('/.netlify/functions/server/beresalexandra/next')
-      .expect(200)
-    return await responseSchema.validateAsync(body)
+    await next(req, res)
+    await responseSchema.validateAsync(res.json.mock.calls[0][0])
   })
 
   it('beresalexandra test resource has same schema as current and next', async () => {
-    const {body} = await request(server)
-      .get('/.netlify/functions/server/beresalexandra/dummy')
-      .expect(200)
-    return await responseSchema.validateAsync(body)
+    await dummy(req, res)
+    await responseSchema.validateAsync(res.json.mock.calls[0][0])
   })
 })
 
