@@ -2,7 +2,7 @@
 import {NextApiRequest, NextApiResponse} from 'next'
 import mem from 'mem'
 
-import {oneDayInMilis} from '../../utils'
+import {oneDayInMilis} from '../../time-utils'
 import {dummyFoodDataForAWeek} from '../../../backend/beresalexandra'
 
 const beresalexandraDummyMenu = mem(dummyFoodDataForAWeek, {maxAge: oneDayInMilis})
