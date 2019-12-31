@@ -23,4 +23,7 @@ module.exports = {
     )
     return config
   },
+  functions: {
+    excludeFiles: ['**/utils/*'],
+  },
 }
