@@ -3,7 +3,7 @@ import {NextApiRequest, NextApiResponse} from 'next'
 import mem from 'mem'
 
 import {siteMenu} from '../../../backend/beresalexandra'
-import {oneDayInMilis} from './utils'
+import {oneDayInMilis} from '../../utils'
 
 const beresalexandraCurrentMenu = mem(siteMenu, {maxAge: oneDayInMilis})
 

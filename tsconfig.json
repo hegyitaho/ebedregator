@@ -23,9 +23,6 @@
     "isolatedModules": true,
     "jsx": "preserve"
   },
-  "include": [
-    "pages", "scraping"
-  ],
   "exclude": [
     "node_modules", ".next"
   ]
