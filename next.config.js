@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 
-// const path = require('path')
-// const resources = path.join(__dirname, 'resources')
+const path = require('path')
+const resources = path.join(__dirname, 'resources')
 
 module.exports = {
   env: {
@@ -17,7 +17,7 @@ module.exports = {
       new CopyWebpackPlugin([
         {
           from: 'resources',
-          to: 'resources',
+          to: resources,
         },
       ]),
     )
