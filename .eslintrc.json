@@ -18,6 +18,7 @@
             "jsx": true
         }
     },
+    "ignorePatterns": ["*.html"],
     "plugins": [
         "@typescript-eslint",
         "jest"
