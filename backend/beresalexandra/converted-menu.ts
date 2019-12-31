@@ -1,7 +1,6 @@
 import * as R from 'ramda'
 import cheerio from 'cheerio'
 import fetch from 'node-fetch'
-import {flatten} from 'ramda'
 
 import {startOfWeek, getTextForFoodTypeForWeek, convertToFoodData} from './utils/conversion'
 import {FoodType} from './utils/food-type'
@@ -32,14 +31,11 @@ export async function menu($: CheerioStatic) {
 
 export function processRawTextOfFoodTypeForTheWeek($, selectors: string[][], type: FoodType): FoodData[] {
   const addDaysToStartOfTheWeek = R.curry(addDaysToDate)(startOfWeek($))
-  return flatten(
-    getTextForFoodTypeForWeek($, selectors)
-      .map((dailyFoods, dayOfTheWeek) => convertTypeForDay(dailyFoods, dayOfTheWeek)),
-  )
-
-  function convertTypeForDay(dailyFoods: string[], dayOfTheWeek: number): FoodData[] {
-    return dailyFoods.map(dailyFood => convertToFoodData(dailyFood, type, addDaysToStartOfTheWeek(dayOfTheWeek)))
-  }
+  return getTextForFoodTypeForWeek($, selectors)
+    .map((dailyFoods, dayOfTheWeek) => 
+      dailyFoods.map(dailyFood => 
+        convertToFoodData(dailyFood, type, addDaysToStartOfTheWeek(dayOfTheWeek))))
+    .flat(Infinity)
 }
 
 export function fozelek($: CheerioStatic): FoodData[] {
