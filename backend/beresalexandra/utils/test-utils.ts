@@ -15,3 +15,6 @@ export function dummyFoodDataForAWeek() {
 const dummyMenuPath = process.env.PROJECT_DIRNAME ?
   path.join(process.env.PROJECT_DIRNAME, 'resources', 'beresalexandra-aktualis-etlap.html') :
   'resources/beresalexandra-aktualis-etlap.html'
+
+console.log('resource path: ' + dummyMenuPath)
+console.log('process.env.PROJECT_DIRNAME: ' + process.env.PROJECT_DIRNAME)
