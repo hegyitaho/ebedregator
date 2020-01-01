@@ -1,10 +1,9 @@
 /* eslint-disable jest/expect-expect */
 import Joi from '@hapi/joi'
 
-import {FoodType} from '../backend/beresalexandra/utils/food-type'
+import {Course} from '../backend/beresalexandra/utils/food-type'
 import current from '../pages/api/beresalexandra/current'
 import next from '../pages/api/beresalexandra/next'
-import dummy from '../pages/api/beresalexandra/dummy'
 
 describe('AppController (e2e)', () => {
   let req
@@ -23,11 +22,6 @@ describe('AppController (e2e)', () => {
     await next(req, res)
     await responseSchema.validateAsync(res.json.mock.calls[0][0])
   })
-
-  it('beresalexandra test resource has same schema as current and next', async () => {
-    await dummy(req, res)
-    await responseSchema.validateAsync(res.json.mock.calls[0][0])
-  })
 })
 
 
@@ -39,7 +33,7 @@ const FoodDataSchema = Joi.object({
   name: Joi.string().required(),
   price: Joi.number().required(), 
   protein: Joi.number().required(),
-  type: Joi.valid(...Object.values(FoodType)),
+  type: Joi.valid(...Object.values(Course)),
 })
 
 const responseSchema = Joi.array().items(FoodDataSchema)

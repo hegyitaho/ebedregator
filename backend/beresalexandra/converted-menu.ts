@@ -3,7 +3,7 @@ import cheerio from 'cheerio'
 import fetch from 'node-fetch'
 
 import {startOfWeek, getTextForFoodTypeForWeek, convertToFoodData} from './utils/conversion'
-import {FoodType} from './utils/food-type'
+import {Course} from './utils/food-type'
 import {FoodData} from './utils/food-data'
 import {fozelekSelectorsForTheWeek} from './food-types/fozelek'
 import {mainCourseSelectorsForTheWeek} from './food-types/main-course'
@@ -29,7 +29,7 @@ export async function menu($: CheerioStatic) {
   return [...fozelek($), ...mainCourse($)].filter(Boolean)
 }
 
-export function processRawTextOfFoodTypeForTheWeek($, selectors: string[][], type: FoodType): FoodData[] {
+export function processRawTextOfFoodTypeForTheWeek($, selectors: string[][], type: Course): FoodData[] {
   const addDaysToStartOfTheWeek = R.curry(addDaysToDate)(startOfWeek($))
   return getTextForFoodTypeForWeek($, selectors)
     .map((dailyFoods, dayOfTheWeek) => 
@@ -39,11 +39,11 @@ export function processRawTextOfFoodTypeForTheWeek($, selectors: string[][], typ
 }
 
 export function fozelek($: CheerioStatic): FoodData[] {
-  return processRawTextOfFoodTypeForTheWeek($, fozelekSelectorsForTheWeek(), FoodType.Fozelek)
+  return processRawTextOfFoodTypeForTheWeek($, fozelekSelectorsForTheWeek(), Course.Fozelek)
 }
 
 export function mainCourse($: CheerioStatic): FoodData[] {
-  return processRawTextOfFoodTypeForTheWeek($, mainCourseSelectorsForTheWeek(), FoodType.MainCourse)
+  return processRawTextOfFoodTypeForTheWeek($, mainCourseSelectorsForTheWeek(), Course.MainCourse)
 }
 
 function rawSiteContent(currentOrNextPath) {

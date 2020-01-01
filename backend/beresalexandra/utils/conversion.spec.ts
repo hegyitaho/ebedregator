@@ -1,7 +1,7 @@
 import {
   startOfWeek, convertToFoodData, getTextForFoodTypeForWeek,
 } from './conversion'
-import {FoodType} from './food-type'
+import {Course} from './food-type'
 import {fozelekSelectorsForTheWeek} from '../food-types/fozelek'
 import {loadBeresAlexandraTestDouble} from './test-utils'
 
@@ -43,7 +43,7 @@ describe('conversion utils', () => {
   })
 
   test('convert text info to key value pairs', () => {
-    expect(convertToFoodData('Zöldbabfőzelék, rozmaringos pulykamell (311 kcal,19 g szénhidrát, 36 g fehérje, 9 g zsír) - 1050 Ft', FoodType.Fozelek, new Date(2019, 4, 27)))
+    expect(convertToFoodData('Zöldbabfőzelék, rozmaringos pulykamell (311 kcal,19 g szénhidrát, 36 g fehérje, 9 g zsír) - 1050 Ft', Course.Fozelek, new Date(2019, 4, 27)))
       .toEqual({
         carbohydrate: '19',
         fat: '9',

@@ -1,5 +1,5 @@
 import {FoodData} from './food-data'
-import {FoodType} from './food-type'
+import {Course} from './food-type'
 
 export function startOfWeek($: CheerioStatic): Date  {
   const startOfTheWeekSelector = '#menutable_print > thead:nth-child(1) > tr:nth-child(2) > td:nth-child(2)'
@@ -21,14 +21,14 @@ export function getTextForFoodTypeForWeek($: CheerioStatic, selectors: string[][
   )
 }
 
-export function convertToFoodData(foodDescription: string, type: FoodType, date: Date): FoodData {
+export function convertToFoodData(foodDescription: string, type: Course, date: Date): FoodData {
   try {
     const beresAlexandraFoodDescriptionRegex = 
     /(?<name>.+)\((?<kcal>\d+)\D*(?<carbohydrate>\d+)\D*(?<protein>\d+)\D*(?<fat>\d+)\D*(?<price>\d+)/
     const {groups: {name, kcal, carbohydrate, protein, fat, price}} = beresAlexandraFoodDescriptionRegex.exec(foodDescription) as any
     return {name: name.trim(), kcal, carbohydrate, protein, fat, price, type, date}
   } catch (error) {
-    console.log(`missing food type for ${date.toUTCString()} - ${FoodType}`)
+    console.log(`missing food type for ${date.toUTCString()} - ${Course}`)
     return null as FoodData
   }
 }

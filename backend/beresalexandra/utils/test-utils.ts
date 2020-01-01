@@ -3,7 +3,7 @@ import fs from 'fs'
 import {loadSite, menu} from '../converted-menu'
 
 export function loadBeresAlexandraTestDouble(): CheerioStatic {
-  const body = fs.readFileSync('beresalexandra-aktualis-etlap.html')
+  const body = fs.readFileSync('test/beresalexandra-aktualis-etlap.html')
   return loadSite(body)
 }
 
