@@ -1,7 +1,7 @@
 /* eslint-disable jest/expect-expect */
 import Joi from '@hapi/joi'
 
-import {Course} from '../backend/beresalexandra/utils/food-type'
+import {Course, Site} from '../backend/domain'
 import current from '../pages/api/beresalexandra/current'
 import next from '../pages/api/beresalexandra/next'
 
@@ -34,6 +34,7 @@ const FoodDataSchema = Joi.object({
   price: Joi.number().required(), 
   protein: Joi.number().required(),
   type: Joi.valid(...Object.values(Course)),
+  site: Joi.valid(...Object.values(Site)),
 })
 
 const responseSchema = Joi.array().items(FoodDataSchema)

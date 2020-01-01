@@ -1,4 +1,5 @@
-import {Course} from './food-type'
+import {Course} from './course'
+import {Site} from './sites'
 export interface FoodData {
   name: string;
   kcal: number;
@@ -8,4 +9,5 @@ export interface FoodData {
   price: number;
   type: Course;
   date: Date;
+  site: Site;
 }

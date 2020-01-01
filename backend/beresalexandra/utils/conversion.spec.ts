@@ -1,7 +1,7 @@
 import {
   startOfWeek, convertToFoodData, getTextForFoodTypeForWeek,
 } from './conversion'
-import {Course} from './food-type'
+import {Course} from '../../domain/course'
 import {fozelekSelectorsForTheWeek} from '../food-types/fozelek'
 import {loadBeresAlexandraTestDouble} from './test-utils'
 
@@ -53,6 +53,7 @@ describe('conversion utils', () => {
         protein: '36',
         type: 'FOZELEK',
         date: new Date(2019, 4, 27),
+        site: 'beresalexandra.hu',
       })
   })
 })
