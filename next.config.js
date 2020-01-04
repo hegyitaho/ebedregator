@@ -8,14 +8,14 @@ const webpack = config => {
 }
 
 const prodConfig = {
-  publicRuntimeConfig: {
+  env: {
     API_ENDPOINT: 'https://ebedregator-nextjs.now.sh/api/',
   },
   
 }
 
 const devConfig = {
-  publicRuntimeConfig: {
+  env: {
     API_ENDPOINT: 'http://localhost:3000/api/',
   },
   webpack,
