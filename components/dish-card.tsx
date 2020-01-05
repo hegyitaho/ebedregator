@@ -4,6 +4,8 @@ import {makeStyles, createStyles, Theme} from '@material-ui/core/styles'
 import {FoodData} from 'backend/domain'
 import Grid from '@material-ui/core/Grid'
 import Card from '@material-ui/core/Card'
+import {withStyles} from '@material-ui/core/styles'
+
 import CardContent from '@material-ui/core/CardContent'
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -25,15 +27,15 @@ const DishCard = (props: {dish: FoodData}) => {
   const classes = useStyles(props)
   return (
     <Grid item>
-      <Card>
+      <Card raised={true}>
         <CardContent>
-          <div className="name">
+          <h3 className="name">
             {props.dish.name}
-          </div>
-          <Grid>
+          </h3>
+          <Grid container spacing={2}>
             {['kcal', 'carbohydrate', 'fat', 'protein'].map(key => 
-              <Grid key={key} item>
-                <Card> 
+              <Grid item key={key}>
+                <Card > 
                   <CardContent>
                     {`${key}: ${props.dish[key]}`}
                   </CardContent>
