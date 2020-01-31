@@ -26,7 +26,7 @@ const Home = (props: { dishes: FoodData[] }) => {
     .filter(({carbohydrate: carb}) => carb >= carbRange[0] && carb <= carbRange[1])
     .filter(({fat}) => fat >= fatRange[0] && fat <= fatRange[1])
     .filter(({protein}) => protein >= proteinRange[0] && protein <= proteinRange[1]),
-  ), [kcalRange, carbRange])
+  ), [kcalRange, carbRange, proteinRange, fatRange])
 
   return (
     <div>
