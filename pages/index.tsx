@@ -30,30 +30,32 @@ const Home = (props: { dishes: FoodData[] }) => {
 
   return (
     <div>
-      <InputSlider 
-        label="kcal" 
-        maxLimit={MAX_KCAL} 
-        value={kcalRange} 
-        setValue={setKcalRange}
-        step={50}/>
-      <InputSlider 
-        label="carbs" 
-        maxLimit={MAX_CARBS} 
-        value={carbRange} 
-        setValue={setCarbRange}
-        step={5}/>
-      <InputSlider 
-        label="protein" 
-        maxLimit={MAX_PROTEIN} 
-        value={proteinRange} 
-        setValue={setProteinRange}
-        step={5}/>
-      <InputSlider 
-        label="fat" 
-        maxLimit={MAX_FAT} 
-        value={fatRange} 
-        setValue={setFatRange}
-        step={5}/>
+      <Box display="flex" flexWrap="wrap">
+        <InputSlider 
+          label="kcal" 
+          maxLimit={MAX_KCAL} 
+          value={kcalRange} 
+          setValue={setKcalRange}
+          step={50}/>
+        <InputSlider 
+          label="carbs" 
+          maxLimit={MAX_CARBS} 
+          value={carbRange} 
+          setValue={setCarbRange}
+          step={5}/>
+        <InputSlider 
+          label="protein" 
+          maxLimit={MAX_PROTEIN} 
+          value={proteinRange} 
+          setValue={setProteinRange}
+          step={5}/>
+        <InputSlider 
+          label="fat" 
+          maxLimit={MAX_FAT} 
+          value={fatRange} 
+          setValue={setFatRange}
+          step={5}/>
+      </Box>
       <Box pt={5}>
         <Grid container spacing={6}>
           {renderedItems.map((dish: FoodData) => (

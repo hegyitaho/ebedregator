@@ -8,7 +8,11 @@ import Box from '@material-ui/core/Box'
 
 const useStyles = makeStyles({
   root: {
-    width: 500,
+    flexGrow: 1,
+    minWidth: 450,
+    '& #input-slider': {
+      textAlign: 'center',
+    },
   },
   input: {
     '& input': {
