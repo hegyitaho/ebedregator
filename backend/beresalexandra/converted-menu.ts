@@ -12,7 +12,7 @@ export function loadSite(body: string | Buffer): CheerioStatic {
   return cheerio.load(body)
 }
 
-export function siteMenu() {
+export function currentSiteMenu() {
   return rawSiteContent('aktualis_etlap')
     .then(loadSite)
     .then(menu)

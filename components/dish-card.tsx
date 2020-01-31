@@ -4,6 +4,7 @@ import Grid from '@material-ui/core/Grid'
 import Card from '@material-ui/core/Card'
 import CardContent from '@material-ui/core/CardContent'
 import Paper from '@material-ui/core/Paper'
+import Box from '@material-ui/core/Box'
 import {purple, lightBlue, teal, yellow} from '@material-ui/core/colors'
 
 import {FoodData} from 'backend/domain'
@@ -18,15 +19,13 @@ const DishCard = (props: {dish: FoodData}) => {
           <h3 className="name">
             {props.dish.name}
           </h3>
-          {/* <Grid container spacing={2}> */}
-          {['kcal', 'carbohydrate', 'fat', 'protein'].map(key => 
-          // <Grid  item key={key}>
-            <Paper key={key} variant="outlined" className={key}>
-              {`${key === 'carbohydrate' ? 'carb' : key}: ${props.dish[key]}`}
-            </Paper>,
-            // </Grid>,
-          )}
-          {/* </Grid> */}
+          <Box display="flex" justifyContent="space-between">
+            {['kcal', 'carbohydrate', 'fat', 'protein'].map(key => 
+              <Paper key={key} variant="outlined" className={key}>
+                {`${key === 'carbohydrate' ? 'carb' : key}: ${props.dish[key]}`}
+              </Paper>,
+            )}
+          </Box>
         </CardContent>
       </Card>
     </Grid>
@@ -38,6 +37,7 @@ export default DishCard
 const useStyles = makeStyles((theme) =>
   createStyles({ 
     root: {
+      'width': 450,
       '& .kcal': {
         backgroundColor: purple['A100'],
         'padding': theme.spacing(0.5),

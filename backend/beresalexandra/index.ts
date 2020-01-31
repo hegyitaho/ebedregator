@@ -1,1 +1,1 @@
-export {nextSiteMenu, siteMenu} from './converted-menu'
+export {nextSiteMenu, currentSiteMenu as siteMenu} from './converted-menu'
