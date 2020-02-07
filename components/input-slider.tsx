@@ -1,4 +1,4 @@
-import React, {useEffect, useState, Dispatch, SetStateAction} from 'react'
+import React, {Dispatch, SetStateAction} from 'react'
 import {makeStyles} from '@material-ui/core/styles'
 import Grid from '@material-ui/core/Grid'
 import Typography from '@material-ui/core/Typography'
@@ -6,21 +6,7 @@ import Slider from '@material-ui/core/Slider'
 import Input from '@material-ui/core/Input'
 import Box from '@material-ui/core/Box'
 
-const useStyles = makeStyles({
-  root: {
-    flexGrow: 1,
-    minWidth: 450,
-    '& #input-slider': {
-      textAlign: 'center',
-    },
-  },
-  input: {
-    '& input': {
-      textAlign: 'center',
-    },
-    width: 60,
-  },
-})
+
 
 export default function InputSlider({label, maxLimit, value, setValue, step}: PersonProps) {
   const styledClasses = useStyles({})
@@ -47,21 +33,23 @@ export default function InputSlider({label, maxLimit, value, setValue, step}: Pe
       <Typography id="input-slider">
         <b>{label}</b>
       </Typography>
-      <Box pl={2}>
-        <Grid container spacing={2} alignItems="center">
-          <Input
-            className={styledClasses.input}
-            value={value[0]}
-            margin="dense"
-            onChange={handleMinKcal}
-            inputProps={{
-              step: 50,
-              min: 0,
-              max: maxLimit,
-              type: 'number',
-              'aria-labelledby': 'input-slider',
-            }}
-          />
+      <Box pl={1}>
+        <Grid container spacing={1} alignItems="center">
+          <Grid item>
+            <Input
+              className={styledClasses.input}
+              value={value[0]}
+              margin="dense"
+              onChange={handleMinKcal}
+              inputProps={{
+                step: 50,
+                min: 0,
+                max: maxLimit,
+                type: 'number',
+                'aria-labelledby': 'input-slider',
+              }}
+            />
+          </Grid>
           <Grid item xs>
             <Slider
               step={step * 100 / maxLimit}
@@ -91,11 +79,27 @@ export default function InputSlider({label, maxLimit, value, setValue, step}: Pe
   )
 }
 
+const useStyles = makeStyles({
+  root: {
+    flexGrow: 1,
+    minWidth: 400,
+    '& #input-slider': {
+      textAlign: 'center',
+    },
+  },
+  input: {
+    '& input': {
+      textAlign: 'center',
+    },
+    width: 60,
+  },
+})
+
 type PersonProps = {
   label: string;
   maxLimit: number;
   value: number[];
   setValue: Dispatch<SetStateAction<number[]>>; 
-  classes?: any[];
+  classes?: [];
   step: number;
 }
