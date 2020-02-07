@@ -24,10 +24,11 @@ const useStyles = makeStyles({
 
 export default function InputSlider({label, maxLimit, value, setValue, step}: PersonProps) {
   const styledClasses = useStyles({})
-  // const [value, setValue] = useState<number[]>([0, maxLimit])
 
-  function handleSliderChange(event: any, newValue:  number[]) {
-    const converted = newValue.map(val =>  val / 100 * maxLimit)
+  function handleSliderChange(_event, newValue:  number[]) {
+    const converted = newValue
+      .map(val =>  val * maxLimit / 100)
+      .map(Math.floor)
     setValue([Math.min(...converted), Math.max(...converted)])
   }
 
