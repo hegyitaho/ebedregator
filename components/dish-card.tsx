@@ -14,17 +14,19 @@ const DishCard = (props: {dish: FoodData}) => {
   const classes = useStyles(props)
   return (
     <Grid item className={classes.root}>
-      <Card raised={true}>
-        <CardContent>
-          <h3 className="name">
-            {props.dish.name}
-          </h3>
-          <Box display="flex" justifyContent="space-between">
-            {['kcal', 'carbohydrate', 'fat', 'protein'].map(key => 
-              <Paper key={key} variant="outlined" className={key}>
-                {`${key === 'carbohydrate' ? 'carb' : key}: ${props.dish[key]}`}
-              </Paper>,
-            )}
+      <Card raised={true} className={classes.stretchHeight100} >
+        <CardContent className={classes.stretchHeight90}>
+          <Box display="flex" flexDirection="column" justifyContent="space-between" className={classes.stretchHeight90}>
+            <h3 className="name">
+              {props.dish.name}
+            </h3>
+            <Box display="flex" justifyContent="space-between">
+              {['kcal', 'carbohydrate', 'fat', 'protein'].map(key => 
+                <Paper key={key} variant="outlined" className={key}>
+                  {`${key === 'carbohydrate' ? 'carb' : key}: ${props.dish[key]}`}
+                </Paper>,
+              )}
+            </Box>
           </Box>
         </CardContent>
       </Card>
@@ -62,6 +64,12 @@ const useStyles = makeStyles((theme) =>
         'margin-top': theme.spacing(0.5),
         'margin-bottom': theme.spacing(0.5),
       },
+    },
+    stretchHeight100: {
+      height: '100%',
+    },
+    stretchHeight90: {
+      height: '90%',
     },
   }),
 )
