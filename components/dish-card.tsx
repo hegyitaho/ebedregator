@@ -5,7 +5,7 @@ import Card from '@material-ui/core/Card'
 import CardContent from '@material-ui/core/CardContent'
 import Paper from '@material-ui/core/Paper'
 import Box from '@material-ui/core/Box'
-import {purple, lightBlue, teal, yellow} from '@material-ui/core/colors'
+import {purple, teal, deepOrange, blue} from '@material-ui/core/colors'
 
 import {FoodData} from 'backend/domain'
 
@@ -20,7 +20,7 @@ const DishCard = (props: {dish: FoodData}) => {
             <h3 className="name">
               {props.dish.name}
             </h3>
-            <Box display="flex" justifyContent="space-between">
+            <Box display="flex" justifyContent="space-between" className='macro-box'>
               {['kcal', 'carbohydrate', 'fat', 'protein'].map(key => 
                 <Paper key={key} variant="outlined" className={key}>
                   {`${key === 'carbohydrate' ? 'carb' : key}: ${props.dish[key]}`}
@@ -37,32 +37,26 @@ const DishCard = (props: {dish: FoodData}) => {
 export default DishCard
 
 const useStyles = makeStyles((theme) =>
-  createStyles({ 
+  createStyles({
     root: {
       'width': 450,
-      '& .kcal': {
-        backgroundColor: purple['A100'],
-        'padding': theme.spacing(0.5),
+      '& .macro-box > *': {
+        color: 'white',
+        padding: theme.spacing(0.5),
         'margin-top': theme.spacing(0.5),
         'margin-bottom': theme.spacing(0.5),
+      },
+      '& .kcal': {
+        backgroundColor: purple['700'],
       },
       '& .carbohydrate': {
-        backgroundColor: lightBlue['A100'],
-        'padding': theme.spacing(0.5),
-        'margin-top': theme.spacing(0.5),
-        'margin-bottom': theme.spacing(0.5),
+        backgroundColor: blue['700'],
       },
       '& .fat': {
-        backgroundColor: teal['A100'],
-        'padding': theme.spacing(0.5),
-        'margin-top': theme.spacing(0.5),
-        'margin-bottom': theme.spacing(0.5),
+        backgroundColor: teal['700'],
       },
       '& .protein': {
-        backgroundColor: yellow['A100'],
-        'padding': theme.spacing(0.5),
-        'margin-top': theme.spacing(0.5),
-        'margin-bottom': theme.spacing(0.5),
+        backgroundColor: deepOrange['700'],
       },
     },
     stretchHeight100: {

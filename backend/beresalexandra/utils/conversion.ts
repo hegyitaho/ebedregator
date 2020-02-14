@@ -22,7 +22,7 @@ export function getTextForFoodTypeForWeek($: CheerioStatic, selectors: string[][
   )
 }
 
-export function convertToFoodData(foodDescription: string, type: Course, date: Date): FoodData {
+export function convertBeresalexandraToFoodData(foodDescription: string, type: Course, date: Date): FoodData {
   try {
     const beresAlexandraFoodDescriptionRegex = 
     /(?<name>.+)\((?<kcal>\d+)\D*(?<carbohydrate>\d+)\D*(?<protein>\d+)\D*(?<fat>\d+)\D*(?<price>\d+)/
