@@ -34,7 +34,7 @@ const Home = ({currentWeekDishes, nextWeekDishes}: {currentWeekDishes: FoodData[
     .filter(({carbohydrate: carb}) => carb >= carbRange[0] && carb <= carbRange[1])
     .filter(({fat}) => fat >= fatRange[0] && fat <= fatRange[1])
     .filter(({protein}) => protein >= proteinRange[0] && protein <= proteinRange[1]),
-  ), [kcalRange, carbRange, proteinRange, fatRange, selectedWeekDishes])
+  ), [kcalRange, carbRange, proteinRange, fatRange, showCurrentWeek])
 
   return (
     <React.Fragment>
