@@ -57,7 +57,7 @@ const Home = (props: { dishes: FoodData[] }) => {
             maxLimit={MAX_FAT} 
             value={fatRange} 
             setValue={setFatRange}
-            step={5}/>
+            step={10}/>
         </Box>
       </Box>
       <Box pt={5}>

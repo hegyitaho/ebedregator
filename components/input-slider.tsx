@@ -8,7 +8,7 @@ import Box from '@material-ui/core/Box'
 
 
 
-export default function InputSlider({label, maxLimit, value, setValue, step}: PersonProps) {
+export default function InputSlider({label, maxLimit, value, setValue, step}: InputSliderProps) {
   const styledClasses = useStyles({})
 
   function handleSliderChange(_event, newValue:  number[]) {
@@ -18,14 +18,14 @@ export default function InputSlider({label, maxLimit, value, setValue, step}: Pe
     setValue([Math.min(...converted), Math.max(...converted)])
   }
 
-  function handleMaxKcal(event: React.ChangeEvent<HTMLInputElement>) {
-    const newMaxKcal = Math.max(0, Number(event.target.value))
-    setValue([value[0], Math.max(value[0], newMaxKcal)])
+  function handleMax(event: React.ChangeEvent<HTMLInputElement>) {
+    const newMax = Math.max(0, Number(event.target.value))
+    setValue([value[0], Math.max(value[0], newMax)])
   }
 
-  function handleMinKcal(event: React.ChangeEvent<HTMLInputElement>) {
-    const newMinKcal = Math.min(maxLimit, Number(event.target.value))
-    setValue([Math.max(0, newMinKcal), value[1]])
+  function handleMin(event: React.ChangeEvent<HTMLInputElement>) {
+    const newMin = Math.min(maxLimit, Number(event.target.value))
+    setValue([Math.max(0, newMin), value[1]])
   }
   
   return (
@@ -40,13 +40,12 @@ export default function InputSlider({label, maxLimit, value, setValue, step}: Pe
               className={styledClasses.input}
               value={value[0]}
               margin="dense"
-              onChange={handleMinKcal}
+              onChange={handleMin}
               inputProps={{
-                step: 50,
+                step,
                 min: 0,
                 max: maxLimit,
                 type: 'number',
-                'aria-labelledby': 'input-slider',
               }}
             />
           </Grid>
@@ -55,7 +54,6 @@ export default function InputSlider({label, maxLimit, value, setValue, step}: Pe
               step={step * 100 / maxLimit}
               value={value.map(val =>  val * 100 / maxLimit)}
               onChange={handleSliderChange}
-              aria-labelledby="input-slider"
             />
           </Grid>
           <Grid item>
@@ -63,13 +61,12 @@ export default function InputSlider({label, maxLimit, value, setValue, step}: Pe
               className={styledClasses.input}
               value={value[1]}
               margin="dense"
-              onChange={handleMaxKcal}
+              onChange={handleMax}
               inputProps={{
-                step: 50,
+                step,
                 min: 0,
                 max: maxLimit,
                 type: 'number',
-                'aria-labelledby': 'input-slider',
               }}
             />
           </Grid>
@@ -95,7 +92,7 @@ const useStyles = makeStyles({
   },
 })
 
-type PersonProps = {
+type InputSliderProps = {
   label: string;
   maxLimit: number;
   value: number[];
