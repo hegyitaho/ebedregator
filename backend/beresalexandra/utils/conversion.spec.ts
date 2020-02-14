@@ -53,7 +53,7 @@ describe('conversion utils', () => {
         protein: '36',
         type: 'FOZELEK',
         date: new Date(2019, 4, 27),
-        site: 'beresalexandra.hu',
+        site: 'https://www.beresalexandra.hu/aktualis_etlap',
       })
   })
 })
