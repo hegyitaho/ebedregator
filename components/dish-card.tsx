@@ -17,9 +17,12 @@ const DishCard = (props: {dish: FoodData}) => {
       <Card raised={true} className={classes.stretchHeight100} >
         <CardContent className={classes.stretchHeight90}>
           <Box display="flex" flexDirection="column" justifyContent="space-between" className={classes.stretchHeight90}>
-            <h3 className="name">
-              {props.dish.name}
-            </h3>
+            <div>
+              <h3 className="name">
+                {props.dish.name}
+              </h3>
+              <a className="link" href={props.dish.site} target="_blank" rel="noopener noreferrer">{props.dish.site}</a>
+            </div>
             <Box display="flex" justifyContent="space-between" className='macro-box'>
               {['kcal', 'carbohydrate', 'fat', 'protein'].map(key => 
                 <Paper key={key} variant="outlined" className={key}>
@@ -39,12 +42,18 @@ export default DishCard
 const useStyles = makeStyles((theme) =>
   createStyles({
     root: {
+      '& .name': {
+        marginTop: 0,
+      },
       'width': 450,
-      '& .macro-box > *': {
-        color: 'white',
-        padding: theme.spacing(0.5),
-        'margin-top': theme.spacing(0.5),
-        'margin-bottom': theme.spacing(0.5),
+      '& .macro-box': {
+        'margin-top': theme.spacing(2),
+        '& > *': {
+          color: 'white',
+          padding: theme.spacing(0.5),
+          'margin-top': theme.spacing(0.5),
+          'margin-bottom': theme.spacing(0.5),
+        },
       },
       '& .kcal': {
         backgroundColor: purple['700'],

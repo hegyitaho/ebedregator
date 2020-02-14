@@ -1,3 +1,3 @@
 export enum Site {
-  BeresAlexandra = 'beresalexandra.hu',
+  BeresAlexandra = 'https://www.beresalexandra.hu/aktualis_etlap',
 }
