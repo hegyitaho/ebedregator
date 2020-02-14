@@ -9,22 +9,17 @@ import InputSlider from '../components/input-slider'
 import Box from '@material-ui/core/Box'
 import Switch from '@material-ui/core/Switch'
 import Typography from '@material-ui/core/Typography'
-import {currentSiteMenu, nextSiteMenu} from '../backend/beresalexandra/converted-menu'
 
-const MAX_KCAL = 1500
-const MAX_CARBS = 200
-const MAX_FAT = 200
-const MAX_PROTEIN = 100
 
-const Home = ({currentWeekDishes, nextWeekDishes}: {currentWeekDishes: FoodData[]; nextWeekDishes: FoodData[]}) => {
+const Home = ({currentWeekDishes, nextWeekDishes, maxFat, maxKcal, maxProtein, maxCarb}: HomeProps) => {
   useLayoutEffect(() => Fonts(), [])
 
   const [showCurrentWeek, setShowCurrentWeek] = useState<boolean>(true)
   const [selectedWeekDishes, setSelectedWeekDishes] = useState<FoodData[]>(currentWeekDishes)
-  const [kcalRange, setKcalRange] = useState<number[]>([0, MAX_KCAL])
-  const [carbRange, setCarbRange] = useState<number[]>([0, MAX_CARBS])
-  const [fatRange, setFatRange] = useState<number[]>([0, MAX_FAT])
-  const [proteinRange, setProteinRange] = useState<number[]>([0, MAX_PROTEIN])
+  const [kcalRange, setKcalRange] = useState<number[]>([0, maxKcal])
+  const [carbRange, setCarbRange] = useState<number[]>([0, maxCarb])
+  const [fatRange, setFatRange] = useState<number[]>([0, maxFat])
+  const [proteinRange, setProteinRange] = useState<number[]>([0, maxProtein])
   const [renderedItems, setRenderedItems] = useState<FoodData[]>(currentWeekDishes)
 
   useEffect(() => setSelectedWeekDishes(showCurrentWeek ? currentWeekDishes : nextWeekDishes), [showCurrentWeek])
@@ -55,13 +50,13 @@ const Home = ({currentWeekDishes, nextWeekDishes}: {currentWeekDishes: FoodData[
         <Box display="flex" flexWrap="wrap" flexGrow="1">
           <InputSlider 
             label="kcal" 
-            maxLimit={MAX_KCAL} 
+            maxLimit={maxKcal} 
             value={kcalRange} 
             setValue={setKcalRange}
             step={50}/>
           <InputSlider 
             label="carbs" 
-            maxLimit={MAX_CARBS} 
+            maxLimit={maxCarb} 
             value={carbRange} 
             setValue={setCarbRange}
             step={5}/>
@@ -69,16 +64,16 @@ const Home = ({currentWeekDishes, nextWeekDishes}: {currentWeekDishes: FoodData[
         <Box display="flex" flexWrap="wrap" flexGrow="1">
           <InputSlider 
             label="protein" 
-            maxLimit={MAX_PROTEIN} 
+            maxLimit={maxProtein} 
             value={proteinRange} 
             setValue={setProteinRange}
             step={5}/>
           <InputSlider 
             label="fat" 
-            maxLimit={MAX_FAT} 
+            maxLimit={maxFat} 
             value={fatRange} 
             setValue={setFatRange}
-            step={10}/>
+            step={5}/>
         </Box>
       </Box>
       <Box pt={5}>
@@ -97,14 +92,34 @@ const Home = ({currentWeekDishes, nextWeekDishes}: {currentWeekDishes: FoodData[
 }
 
 Home.getInitialProps = async function() {
-  const [currentWeekDishes, nextWeekDishes] = await Promise.all([
+  const [currentWeekDishes, nextWeekDishes]: [FoodData[], FoodData[]]  = await Promise.all([
     fetch(process.env.API_ENDPOINT + 'beresalexandra/next').then(res => res.json()),
     fetch(process.env.API_ENDPOINT + 'beresalexandra/current').then(res => res.json()),
   ])
   return {
     currentWeekDishes,
     nextWeekDishes,
+    ...maxMacros(currentWeekDishes, nextWeekDishes),
   }
 }
 
 export default Home
+
+function maxMacros(currentWeekDishes: FoodData[], nextWeekDishes: FoodData[]): { maxFat: number; maxKcal: number; maxProtein: number; maxCarb: number } {
+  return [...currentWeekDishes, ...nextWeekDishes]
+    .reduce(({maxFat, maxKcal, maxProtein, maxCarb}, {fat, kcal, protein, carbohydrate}) => ({
+      maxFat: Math.max(maxFat, fat),
+      maxKcal: Math.max(maxKcal, kcal),
+      maxProtein: Math.max(maxProtein, protein),
+      maxCarb: Math.max(maxCarb, carbohydrate),
+    }), {maxFat: 0, maxKcal: 0, maxProtein: 0, maxCarb: 0})
+}
+
+interface HomeProps {
+  currentWeekDishes: FoodData[];
+  nextWeekDishes: FoodData[];
+  maxFat: number;
+  maxKcal: number;
+  maxProtein: number;
+  maxCarb: number;
+}
