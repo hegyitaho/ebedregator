@@ -7,8 +7,8 @@ import DishCard from '../components/dish-card'
 import {Fonts} from '../utils/fonts'
 import InputSlider from '../components/input-slider'
 import Box from '@material-ui/core/Box'
-import Switch from '@material-ui/core/Switch'
 import Typography from '@material-ui/core/Typography'
+import WeekToggle from '../components/week-toggle'
 
 
 const Home = ({currentWeekDishes, nextWeekDishes, maxFat, maxKcal, maxProtein, maxCarb}: HomeProps) => {
@@ -33,18 +33,10 @@ const Home = ({currentWeekDishes, nextWeekDishes, maxFat, maxKcal, maxProtein, m
 
   return (
     <Typography component="div">
-      <Grid component="label" container alignItems="center" spacing={1}>
-        <Grid item>Current week</Grid>
-        <Grid item>
-          <Switch
-            checked={showNextWeek}
-            onChange={toggleWeekSelected}
-            value={showNextWeek}
-          />
-        </Grid>
-        <Grid item>Next week</Grid>
-      </Grid>
-      
+      <WeekToggle
+        showNextWeek={showNextWeek}
+        toggleWeekSelected={toggleWeekSelected}
+      />
       <Box display="flex" flexWrap="wrap">
         <Box display="flex" flexWrap="wrap" flexGrow="1">
           <InputSlider 
