@@ -14,7 +14,7 @@ import Typography from '@material-ui/core/Typography'
 const Home = ({currentWeekDishes, nextWeekDishes, maxFat, maxKcal, maxProtein, maxCarb}: HomeProps) => {
   useLayoutEffect(() => Fonts(), [])
 
-  const [showCurrentWeek, setShowCurrentWeek] = useState<boolean>(true)
+  const [showNextWeek, setShowNextWeek] = useState<boolean>(false)
   const [selectedWeekDishes, setSelectedWeekDishes] = useState<FoodData[]>(currentWeekDishes)
   const [kcalRange, setKcalRange] = useState<number[]>([0, maxKcal])
   const [carbRange, setCarbRange] = useState<number[]>([0, maxCarb])
@@ -22,28 +22,28 @@ const Home = ({currentWeekDishes, nextWeekDishes, maxFat, maxKcal, maxProtein, m
   const [proteinRange, setProteinRange] = useState<number[]>([0, maxProtein])
   const [renderedItems, setRenderedItems] = useState<FoodData[]>(currentWeekDishes)
 
-  useEffect(() => setSelectedWeekDishes(showCurrentWeek ? currentWeekDishes : nextWeekDishes), [showCurrentWeek])
+  useEffect(() => setSelectedWeekDishes(showNextWeek ? currentWeekDishes : nextWeekDishes), [showNextWeek])
 
   useEffect(() => setRenderedItems(selectedWeekDishes
     .filter(({kcal}) => kcal >= kcalRange[0] && kcal <= kcalRange[1])
     .filter(({carbohydrate: carb}) => carb >= carbRange[0] && carb <= carbRange[1])
     .filter(({fat}) => fat >= fatRange[0] && fat <= fatRange[1])
     .filter(({protein}) => protein >= proteinRange[0] && protein <= proteinRange[1]),
-  ), [kcalRange, carbRange, proteinRange, fatRange, showCurrentWeek])
+  ), [kcalRange, carbRange, proteinRange, fatRange, showNextWeek])
 
   return (
     <React.Fragment>
       <Typography component="div">
         <Grid component="label" container alignItems="center" spacing={1}>
-          <Grid item>Next week</Grid>
+          <Grid item>Current week</Grid>
           <Grid item>
             <Switch
-              checked={showCurrentWeek}
-              onChange={handleCurrentNextSwitch}
-              value={showCurrentWeek}
+              checked={showNextWeek}
+              onChange={toggleWeekSelected}
+              value={showNextWeek}
             />
           </Grid>
-          <Grid item>Current week</Grid>
+          <Grid item>Next week</Grid>
         </Grid>
       </Typography>
       <Box display="flex" flexWrap="wrap">
@@ -86,8 +86,8 @@ const Home = ({currentWeekDishes, nextWeekDishes, maxFat, maxKcal, maxProtein, m
     </React.Fragment>
   )
 
-  function handleCurrentNextSwitch() {
-    setShowCurrentWeek(!showCurrentWeek)
+  function toggleWeekSelected() {
+    setShowNextWeek(!showNextWeek)
   }
 }
 
@@ -105,7 +105,9 @@ Home.getInitialProps = async function() {
 
 export default Home
 
-function maxMacros(currentWeekDishes: FoodData[], nextWeekDishes: FoodData[]): { maxFat: number; maxKcal: number; maxProtein: number; maxCarb: number } {
+
+
+function maxMacros(currentWeekDishes: FoodData[], nextWeekDishes: FoodData[]): MaxMacros {
   return [...currentWeekDishes, ...nextWeekDishes]
     .reduce(({maxFat, maxKcal, maxProtein, maxCarb}, {fat, kcal, protein, carbohydrate}) => ({
       maxFat: Math.max(maxFat, fat),
@@ -118,6 +120,13 @@ function maxMacros(currentWeekDishes: FoodData[], nextWeekDishes: FoodData[]): {
 interface HomeProps {
   currentWeekDishes: FoodData[];
   nextWeekDishes: FoodData[];
+  maxFat: number;
+  maxKcal: number;
+  maxProtein: number;
+  maxCarb: number;
+}
+
+interface MaxMacros {
   maxFat: number;
   maxKcal: number;
   maxProtein: number;
