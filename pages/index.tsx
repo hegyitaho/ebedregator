@@ -32,20 +32,19 @@ const Home = ({currentWeekDishes, nextWeekDishes, maxFat, maxKcal, maxProtein, m
   ), [kcalRange, carbRange, proteinRange, fatRange, showNextWeek])
 
   return (
-    <React.Fragment>
-      <Typography component="div">
-        <Grid component="label" container alignItems="center" spacing={1}>
-          <Grid item>Current week</Grid>
-          <Grid item>
-            <Switch
-              checked={showNextWeek}
-              onChange={toggleWeekSelected}
-              value={showNextWeek}
-            />
-          </Grid>
-          <Grid item>Next week</Grid>
+    <Typography component="div">
+      <Grid component="label" container alignItems="center" spacing={1}>
+        <Grid item>Current week</Grid>
+        <Grid item>
+          <Switch
+            checked={showNextWeek}
+            onChange={toggleWeekSelected}
+            value={showNextWeek}
+          />
         </Grid>
-      </Typography>
+        <Grid item>Next week</Grid>
+      </Grid>
+      
       <Box display="flex" flexWrap="wrap">
         <Box display="flex" flexWrap="wrap" flexGrow="1">
           <InputSlider 
@@ -83,7 +82,7 @@ const Home = ({currentWeekDishes, nextWeekDishes, maxFat, maxKcal, maxProtein, m
           ))}
         </Grid>
       </Box>
-    </React.Fragment>
+    </Typography>
   )
 
   function toggleWeekSelected() {
