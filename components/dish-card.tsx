@@ -10,23 +10,23 @@ import {purple, teal, deepOrange, blue} from '@material-ui/core/colors'
 import {FoodData} from 'backend/domain'
 
 
-const DishCard = (props: {dish: FoodData}) => {
-  const classes = useStyles(props)
+const DishCard = ({dish, hidden}: {dish: FoodData; hidden: boolean}) => {
+  const classes = useStyles({})
   return (
-    <Grid item className={classes.root}>
+    <Grid item className={classes.root} hidden={hidden}>
       <Card raised={true} className={classes.stretchHeight100} >
         <CardContent className={classes.stretchHeight90}>
           <Box display="flex" flexDirection="column" justifyContent="space-between" className={classes.stretchHeight90}>
             <div>
               <h3 className="name">
-                {props.dish.name}
+                {dish.name}
               </h3>
-              <a className="link" href={props.dish.site} target="_blank" rel="noopener noreferrer">{props.dish.site}</a>
+              <a className="link" href={dish.site} target="_blank" rel="noopener noreferrer">{dish.site}</a>
             </div>
             <Box className='macro-box'>
               {['kcal', 'carbohydrate', 'fat', 'protein'].map(key => 
                 <Paper key={key} variant="outlined" className={key}>
-                  {`${key === 'carbohydrate' ? 'carb' : key}: ${props.dish[key]}`}
+                  {`${key === 'carbohydrate' ? 'carb' : key}: ${dish[key]}`}
                 </Paper>,
               )}
             </Box>

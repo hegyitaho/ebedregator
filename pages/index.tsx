@@ -22,14 +22,14 @@ const Home = ({currentWeekDishes, nextWeekDishes, maxFat, maxKcal, maxProtein, m
   const [proteinRange, setProteinRange] = useState<number[]>([0, maxProtein])
   const [renderedItems, setRenderedItems] = useState<FoodData[]>(currentWeekDishes)
 
-  useEffect(() => setSelectedWeekDishes(showNextWeek ? currentWeekDishes : nextWeekDishes), [showNextWeek])
+  useEffect(() => setSelectedWeekDishes(showNextWeek ? currentWeekDishes : nextWeekDishes), [showNextWeek, currentWeekDishes, nextWeekDishes])
 
   useEffect(() => setRenderedItems(selectedWeekDishes
     .filter(({kcal}) => kcal >= kcalRange[0] && kcal <= kcalRange[1])
     .filter(({carbohydrate: carb}) => carb >= carbRange[0] && carb <= carbRange[1])
     .filter(({fat}) => fat >= fatRange[0] && fat <= fatRange[1])
     .filter(({protein}) => protein >= proteinRange[0] && protein <= proteinRange[1]),
-  ), [kcalRange, carbRange, proteinRange, fatRange, showNextWeek])
+  ), [kcalRange, carbRange, proteinRange, fatRange, showNextWeek, selectedWeekDishes])
 
   return (
     <Typography component="div">
@@ -69,8 +69,8 @@ const Home = ({currentWeekDishes, nextWeekDishes, maxFat, maxKcal, maxProtein, m
       </Box>
       <Box pt={5}>
         <Grid container spacing={6}>
-          {renderedItems.map((dish: FoodData) => (
-            <DishCard dish={dish} key={dish.name} />
+          {selectedWeekDishes.map((dish: FoodData) => (
+            <DishCard dish={dish} key={dish.name} hidden={isDishoutsideLimits(dish)} />
           ))}
         </Grid>
       </Box>
@@ -80,12 +80,23 @@ const Home = ({currentWeekDishes, nextWeekDishes, maxFat, maxKcal, maxProtein, m
   function toggleWeekSelected() {
     setShowNextWeek(!showNextWeek)
   }
+
+  function isDishoutsideLimits({kcal, carbohydrate, fat, protein}) {
+    return kcal <= kcalRange[0] ||
+      kcal >= kcalRange[1] ||
+      carbohydrate <= carbRange[0] ||
+      carbohydrate >= carbRange[1] ||
+      fat <= fatRange[0] ||
+      fat >= fatRange[1] ||
+      protein <= proteinRange[0] ||
+      protein >= proteinRange[1]
+  }
 }
 
 Home.getInitialProps = async function() {
   const [currentWeekDishes, nextWeekDishes]: [FoodData[], FoodData[]]  = await Promise.all([
-    fetch(process.env.API_ENDPOINT + 'beresalexandra/next').then(res => res.json()),
     fetch(process.env.API_ENDPOINT + 'beresalexandra/current').then(res => res.json()),
+    fetch(process.env.API_ENDPOINT + 'beresalexandra/next').then(res => res.json()),
   ])
   return {
     currentWeekDishes,
@@ -95,8 +106,6 @@ Home.getInitialProps = async function() {
 }
 
 export default Home
-
-
 
 function maxMacros(currentWeekDishes: FoodData[], nextWeekDishes: FoodData[]): MaxMacros {
   return [...currentWeekDishes, ...nextWeekDishes]

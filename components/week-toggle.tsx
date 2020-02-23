@@ -6,7 +6,6 @@ import Switch from '@material-ui/core/Switch'
 
 
 const WeekToggle = ({showNextWeek, toggleWeekSelected}: WeekToggleProps) => {
-  const styledClasses = useStyles({})
   return (
     <Grid component="label" container alignItems="center" spacing={1}>
       <Grid item>Current week</Grid>
@@ -21,22 +20,6 @@ const WeekToggle = ({showNextWeek, toggleWeekSelected}: WeekToggleProps) => {
     </Grid>
   )
 }
-
-const useStyles = makeStyles({
-  root: {
-    flexGrow: 1,
-    minWidth: 400,
-    '& #input-slider': {
-      textAlign: 'center',
-    },
-  },
-  input: {
-    '& input': {
-      textAlign: 'center',
-    },
-    width: 60,
-  },
-})
 
 export default WeekToggle
 
