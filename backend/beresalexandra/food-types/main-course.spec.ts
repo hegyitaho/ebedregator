@@ -1,4 +1,4 @@
-import {loadBeresAlexandraTestDouble} from '../utils/test-utils'
+import {loadBeresAlexandraTestDouble} from '../../../test/test-utils'
 import {mainCourseSelectorsForTheWeek, mainCourseDishes} from './main-course'
 import * as R from 'ramda'
 

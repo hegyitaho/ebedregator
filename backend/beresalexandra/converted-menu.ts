@@ -3,7 +3,7 @@ import cheerio from 'cheerio'
 import fetch from 'node-fetch'
 import dayjs from 'dayjs'
 
-import {startOfWeek, getTextForFoodTypeForWeek, convertBeresalexandraToFoodData} from './utils/conversion'
+import {startOfWeek, getTextForFoodTypeForWeek, convertBeresalexandraToFoodData} from './conversion'
 import {Course, FoodData} from '../domain'
 import {fozelekSelectorsForTheWeek} from './food-types/fozelek'
 import {mainCourseSelectorsForTheWeek} from './food-types/main-course'
@@ -14,23 +14,29 @@ export function loadSite(body: string | Buffer): CheerioStatic {
 }
 
 export function currentSiteMenu() {
-  return rawSiteContent('aktualis_etlap')
-    .then(loadSite)
-    .then(menu)
+  return getSiteMenu('aktualis_etlap')
 }
 
 export function nextSiteMenu() {
-  return rawSiteContent('kovetkezo_etlap')
+  return getSiteMenu('kovetkezo_etlap')
+}
+
+function getSiteMenu(path) {
+  return rawSiteContent(path)
     .then(loadSite)
     .then(menu)
 }
 
 export async function menu($: CheerioStatic): Promise<FoodData[]> {
-  return [...fozelek($), ...mainCourse($)].filter(Boolean)
+  return [
+    ...fozelek($), 
+    ...mainCourse($),
+  ]
+    .filter(Boolean)
 }
 
 export function processRawTextOfFoodTypeForTheWeek($, selectors: string[][], type: Course): FoodData[] {
-  const addDaysToStartOfTheWeek = addDaysToDate(startOfWeek($))
+  const addDaysToStartOfTheWeek = addDaysTo(startOfWeek($))
   return getTextForFoodTypeForWeek($, selectors)
     .map((dailyFoods, dayOfTheWeek) => 
       dailyFoods.map(dailyFood => 
@@ -51,7 +57,7 @@ function rawSiteContent(currentOrNextPath) {
     .then(res => res.text())
 }
 
-function addDaysToDate(date: Date) {
+function addDaysTo(date: Date) {
   return daysToAdd => dayjs(date)
     .add(daysToAdd, 'day')
     .toDate()

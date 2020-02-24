@@ -1,9 +1,9 @@
 import {
   startOfWeek, convertBeresalexandraToFoodData, getTextForFoodTypeForWeek,
 } from './conversion'
-import {Course} from '../../domain/course'
-import {fozelekSelectorsForTheWeek} from '../food-types/fozelek'
-import {loadBeresAlexandraTestDouble} from './test-utils'
+import {Course} from '../domain/course'
+import {fozelekSelectorsForTheWeek} from './food-types/fozelek'
+import {loadBeresAlexandraTestDouble} from '../../test/test-utils'
 
 describe('conversion utils', () => {
   let $: CheerioStatic
@@ -53,7 +53,7 @@ describe('conversion utils', () => {
         protein: '36',
         type: 'FOZELEK',
         date: new Date(2019, 4, 27),
-        site: 'https://www.beresalexandra.hu/aktualis_etlap',
+        site: 'https://www.beresalexandra.hu',
       })
   })
 })

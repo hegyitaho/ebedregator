@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable no-console */
-import {FoodData, Course, Site} from '../../domain'
+import {FoodData, Course, Site} from '../domain'
 
 export function startOfWeek($: CheerioStatic): Date  {
   const startOfTheWeekSelector = '#menutable_print > thead:nth-child(1) > tr:nth-child(2) > td:nth-child(2)'

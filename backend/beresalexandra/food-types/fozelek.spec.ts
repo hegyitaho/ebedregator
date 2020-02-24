@@ -1,4 +1,4 @@
-import {loadBeresAlexandraTestDouble} from '../utils/test-utils'
+import {loadBeresAlexandraTestDouble} from '../../../test/test-utils'
 import {fozelekSelectorsForTheWeek, fozelekDishes} from './fozelek'
 
 

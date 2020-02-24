@@ -1,5 +1,5 @@
 import * as R from 'ramda'
-import {getTextForFoodTypeForWeek} from '../utils/conversion'
+import {getTextForFoodTypeForWeek} from '../conversion'
 
 export function fozelekDishes($: CheerioStatic): string[][] {
   return getTextForFoodTypeForWeek($, fozelekSelectorsForTheWeek())
