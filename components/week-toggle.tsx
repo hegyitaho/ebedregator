@@ -1,5 +1,4 @@
-import React, {Dispatch, SetStateAction} from 'react'
-import {makeStyles} from '@material-ui/core/styles'
+import React from 'react'
 import Grid from '@material-ui/core/Grid'
 import Switch from '@material-ui/core/Switch'
 

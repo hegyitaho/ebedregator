@@ -36,6 +36,7 @@
         "newline-per-chained-call": ["warn", { "ignoreChainWithDepth": 8 }],
         "@typescript-eslint/no-use-before-define": "off",
         "@typescript-eslint/explicit-function-return-type": "off",
-        "@typescript-eslint/no-angle-bracket-type-assertion": "off"
+        "@typescript-eslint/no-angle-bracket-type-assertion": "off",
+        "@typescript-eslint/no-explicit-any": "off"
     }
 }
