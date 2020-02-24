@@ -20,16 +20,8 @@ const Home = ({currentWeekDishes, nextWeekDishes, maxFat, maxKcal, maxProtein, m
   const [carbRange, setCarbRange] = useState<number[]>([0, maxCarb])
   const [fatRange, setFatRange] = useState<number[]>([0, maxFat])
   const [proteinRange, setProteinRange] = useState<number[]>([0, maxProtein])
-  const [renderedItems, setRenderedItems] = useState<FoodData[]>(currentWeekDishes)
 
   useEffect(() => setSelectedWeekDishes(showNextWeek ? currentWeekDishes : nextWeekDishes), [showNextWeek, currentWeekDishes, nextWeekDishes])
-
-  useEffect(() => setRenderedItems(selectedWeekDishes
-    .filter(({kcal}) => kcal >= kcalRange[0] && kcal <= kcalRange[1])
-    .filter(({carbohydrate: carb}) => carb >= carbRange[0] && carb <= carbRange[1])
-    .filter(({fat}) => fat >= fatRange[0] && fat <= fatRange[1])
-    .filter(({protein}) => protein >= proteinRange[0] && protein <= proteinRange[1]),
-  ), [kcalRange, carbRange, proteinRange, fatRange, showNextWeek, selectedWeekDishes])
 
   return (
     <Typography component="div">
