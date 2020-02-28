@@ -1,10 +1,11 @@
 {
   "name": "create-next-example-app",
-  "description": "A Next.js starter app.",
+  "description": "Compare food couriers in operation in Budapest",
   "repository": {
     "type": "git",
-    "url": "https://github.com/zeit/now-examples/tree/master/nextjs"
+    "url": "https://github.com/hegyitaho/ebedregator"
   },
+  "type": "module",
   "engines": {
     "node": "12.x",
     "npm": "6.x"
@@ -33,7 +34,10 @@
     "react-dom": "^16.12.0"
   },
   "devDependencies": {
+    "@ava/babel": "^1.0.1",
+    "@ava/typescript": "^1.1.1",
     "@hapi/joi": "^16.1.8",
+    "@testing-library/react": "^9.4.1",
     "@types/cheerio": "^0.22.15",
     "@types/hapi__joi": "^16.0.5",
     "@types/jest": "^24.0.25",
@@ -44,16 +48,19 @@
     "@types/supertest": "^2.0.8",
     "@typescript-eslint/eslint-plugin": "^2.13.0",
     "@typescript-eslint/parser": "^2.13.0",
+    "ava": "^3.4.0",
     "copy-webpack-plugin": "^5.1.1",
     "eslint": "^6.8.0",
+    "eslint-plugin-ava": "^10.2.0",
     "eslint-plugin-jest": "^23.2.0",
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-react": "^7.17.0",
+    "esm": "^3.2.25",
     "jest": "^24.9.0",
     "now": "^16.7.0",
     "ts-jest": "^24.2.0",
     "ts-loader": "^6.2.1",
-    "ts-node": "^8.5.4",
+    "ts-node": "^8.6.2",
     "typescript": "^3.7.4"
   }
 }

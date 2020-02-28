@@ -12,6 +12,7 @@ module.exports = {
     '/node_modules/',
     '/.next/',
     '/dist/',
+    'backend/beresalexandra/food-types/fozelek.test.ts',
   ],
   globals: {
     'ts-jest': {diagnostics: false},

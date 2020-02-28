@@ -9,11 +9,12 @@
         "eslint:recommended",
         "plugin:@typescript-eslint/recommended",
         "plugin:jest/recommended",
-        "plugin:react/recommended"
+        "plugin:react/recommended",
+        "plugin:ava/recommended"
     ],
     "parser": "@typescript-eslint/parser",
     "parserOptions": {
-        "ecmaVersion": 2019,
+        "ecmaVersion": 2020,
         "sourceType": "module",
         "ecmaFeatures": {
             "jsx": true
@@ -22,7 +23,8 @@
     "ignorePatterns": ["*.html"],
     "plugins": [
         "@typescript-eslint",
-        "jest"
+        "jest",
+        "ava"
     ],
     "rules": {
         "semi": ["warn", "never"],
@@ -37,6 +39,11 @@
         "@typescript-eslint/no-use-before-define": "off",
         "@typescript-eslint/explicit-function-return-type": "off",
         "@typescript-eslint/no-angle-bracket-type-assertion": "off",
-        "@typescript-eslint/no-explicit-any": "off"
+        "@typescript-eslint/no-explicit-any": "off",
+        "ava/no-import-test-files": "off",
+        "ava/use-test": "off",
+        "jest/expect-expect": "off",
+        "ava/no-ignored-test-files": "off",
+        "jest/no-test-callback": "off"
     }
 }
