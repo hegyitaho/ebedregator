@@ -4,6 +4,7 @@ import Grid from '@material-ui/core/Grid'
 import Typography from '@material-ui/core/Typography'
 import Slider from '@material-ui/core/Slider'
 import Input from '@material-ui/core/Input'
+import InputLabel from '@material-ui/core/InputLabel'
 import Box from '@material-ui/core/Box'
 
 
@@ -31,23 +32,28 @@ export default function InputSlider({label, maxLimit, value, setValue, step}: In
   return (
     <div className={styledClasses.root}>
       <Typography id="input-slider">
-        <b>{label}</b>
+        <label>
+          <b>{label}</b>
+        </label>
       </Typography>
       <Box pl={1}>
         <Grid container spacing={1} alignItems="center">
           <Grid item>
-            <Input
-              className={styledClasses.input}
-              value={value[0]}
-              margin="dense"
-              onChange={handleMin}
-              inputProps={{
-                step,
-                min: 0,
-                max: maxLimit,
-                type: 'number',
-              }}
-            />
+            <InputLabel>
+              {label}
+              <Input
+                className={styledClasses.input}
+                value={value[0]}
+                margin="dense"
+                onChange={handleMin}
+                inputProps={{
+                  step,
+                  min: 0,
+                  max: maxLimit,
+                  type: 'number',
+                }}
+              />
+            </InputLabel>
           </Grid>
           <Grid item xs>
             <Slider

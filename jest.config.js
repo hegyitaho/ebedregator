@@ -1,19 +1,10 @@
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const {jsWithTs: tsjPreset} = require('ts-jest/presets')
 module.exports = {
-  preset: 'ts-jest',
+  'testMatch': [
+    '**/__tests__/**/*.+(ts|tsx|js)',
+    '**/?(*.)+(spec|test).+(ts|tsx|js)',
+  ],
   'transform': {
-    ...tsjPreset.transform,
-  },
-  moduleFileExtensions: [
-    'js', 'json', 'jsx', 'ts', 'tsx', 'node',
-  ],
-  testPathIgnorePatterns: [
-    '/node_modules/',
-    '/.next/',
-    '/dist/',
-  ],
-  globals: {
-    'ts-jest': {diagnostics: false},
+    '^.+\\.(ts|tsx)$': 'ts-jest',
   },
 }
