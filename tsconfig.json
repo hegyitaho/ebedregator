@@ -1,8 +1,6 @@
 {
   "compilerOptions": {
-    "lib": [
-      "es2020"
-    ],
+    "lib": ["es2020"],
     "module": "esnext",
     "declaration": true,
     "emitDecoratorMetadata": true,
@@ -20,16 +18,9 @@
     "noEmit": true,
     "moduleResolution": "node",
     "resolveJsonModule": true,
-    "jsx": "preserve",
+    "jsx": "react",
     "isolatedModules": true
   },
-  "exclude": [
-    "node_modules",
-    ".next"
-  ],
-  "include": [
-    "next-env.d.ts",
-    "**/*.ts",
-    "**/*.tsx"
-  ]
+  "exclude": ["node_modules", ".next"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"]
 }

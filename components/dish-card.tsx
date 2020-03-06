@@ -9,7 +9,6 @@ import {purple, teal, deepOrange, blue} from '@material-ui/core/colors'
 
 import {FoodData} from 'backend/domain'
 
-
 const DishCard = ({dish, hidden}: {dish: FoodData; hidden: boolean}) => {
   const classes = useStyles({})
   return (
